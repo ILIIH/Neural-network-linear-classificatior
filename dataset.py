@@ -1,4 +1,4 @@
-import io
+from scipy import io
 import os
 import numpy as np
 
