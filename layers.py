@@ -52,33 +52,17 @@ class Param:
 
 class ReLULayer:
     def __init__(self):
-        pass
+        self.mask = None
 
     def forward(self, X):
-        # TODO: Implement forward pass
-        # Hint: you'll need to save some information about X
-        # to use it later in the backward pass
-        raise Exception("Not implemented!")
+        self.mask = (X > 0)  
+        return np.where(self.mask, X, 0)  
 
     def backward(self, d_out):
-        """
-        Backward pass
-
-        Arguments:
-        d_out, np array (batch_size, num_features) - gradient
-           of loss function with respect to output
-
-        Returns:
-        d_result: np array (batch_size, num_features) - gradient
-          with respect to input
-        """
-        # TODO: Implement backward pass
-        # Your final implementation shouldn't have any loops
-        raise Exception("Not implemented!")
+        d_result = d_out * self.mask
         return d_result
 
     def params(self):
-        # ReLU Doesn't have any parameters
         return {}
 
 
