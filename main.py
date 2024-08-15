@@ -23,7 +23,12 @@ def main():
     train_X, train_y, test_X, test_y = load_svhn("data", max_train=10000, max_test=1000)    
     train_X, test_X = prepare_for_neural_network(train_X, test_X)
     train_X, train_y, val_X, val_y = random_split_train_val(train_X, train_y, num_val = 1000)
-    print(0.001 * np.random.randn(3, 3))
+
+    X = np.array([[1,-2,3],
+              [-1, 2, 0.1]
+              ])
+
+    assert check_layer_gradient(ReLULayer(), X)
 
 if __name__ == "__main__":
     main()
